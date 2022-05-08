@@ -23,6 +23,14 @@ async function run() {
       const result = await cursor.limit(6).toArray();
       res.send(result);
     });
+
+    // Inventory Details
+    app.get("/inventory/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const inventory = await inventoryCollection.findOne(query);
+      res.send(inventory);
+    });
     // Inventory Manage
     app.get("/ManageInventory", async (req, res) => {
       const query = {};
@@ -35,6 +43,13 @@ async function run() {
       const query = {};
       const cursor = inventoryCollection.find(query);
       const result = await cursor.toArray();
+      res.send(result);
+    });
+    // Manage item delete
+    app.delete("/manageItems/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await inventoryCollection.deleteOne(query);
       res.send(result);
     });
   } finally {
