@@ -52,6 +52,12 @@ async function run() {
       const result = await inventoryCollection.deleteOne(query);
       res.send(result);
     });
+    // add new item
+    app.post("/inventory", async (req, res) => {
+      const newInventory = req.body;
+      const result = await inventoryCollection.insertOne(newInventory);
+      res.send(result);
+    });
   } finally {
   }
 }
