@@ -69,10 +69,11 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("ass");
+  res.send("wh-cycle running");
 });
 
 app.listen(port, () => {
   console.log("assigment-11 connect port:", port);
 });
 // project end
+//
