@@ -31,6 +31,7 @@ async function run() {
       const inventory = await inventoryCollection.findOne(query);
       res.send(inventory);
     });
+
     // Inventory Manage
     app.get("/ManageInventory", async (req, res) => {
       const query = {};
@@ -38,6 +39,7 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     });
+
     // Manage Items
     app.get("/manageItems", async (req, res) => {
       const query = {};
@@ -45,6 +47,7 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     });
+
     // Manage item delete
     app.delete("/manageItems/:id", async (req, res) => {
       const id = req.params.id;
@@ -52,6 +55,7 @@ async function run() {
       const result = await inventoryCollection.deleteOne(query);
       res.send(result);
     });
+
     // add new item
     app.post("/inventory", async (req, res) => {
       const newInventory = req.body;
@@ -61,6 +65,7 @@ async function run() {
   } finally {
   }
 }
+
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
