@@ -62,6 +62,19 @@ async function run() {
       const result = await inventoryCollection.insertOne(newInventory);
       res.send(result);
     });
+    // myitems
+    app.get("/myitems", async (req, res) => {
+      const email = req.query.email;
+      const query = { email: email };
+      const cursor = inventoryCollection.find(query);
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+    app.post("/myitems", async (req, res) => {
+      const item = req.body;
+      const result = await inventoryCollection.insertOne(item);
+      res.send(result);
+    });
   } finally {
   }
 }
